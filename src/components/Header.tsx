@@ -1,4 +1,5 @@
-import { Flex, Heading, Switch, useColorMode } from '@chakra-ui/react'
+import { Flex, Heading, Switch, useColorMode, HStack, Link as ChakraLink } from '@chakra-ui/react'
+import Link from "next/link"
 import React from 'react'
 
 export default function Header() {
@@ -16,16 +17,25 @@ export default function Header() {
       px={8}
       py={3}
     >
-      <Heading>The Den</Heading>
+      <Link href="/">
+        <ChakraLink>
+          <Heading>The Den</Heading>
+        </ChakraLink>
+      </Link>
 
-      <Flex>
-        
+      <HStack spacing="24px">
+        <Link href="/recipes">
+          <ChakraLink>Recipes</ChakraLink>
+        </Link>
+        <Link href="/funzone">
+          <ChakraLink>Fun Zone</ChakraLink>
+        </Link>
         <Switch
           color="green"
           isChecked={isDark}
           onChange={toggleColorMode}
         />
-      </Flex>
+      </HStack>
     </Flex>
   )
 }
