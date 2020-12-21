@@ -3,7 +3,7 @@ import React from 'react'
 import { Stack } from "@chakra-ui/react"
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { getRecipes } from '../../lib/recipes'
+import { getRecipes } from '../lib/recipes'
 import { Container } from '../components/Container'
 
 export default function Recipes({ allRecipes }: {
