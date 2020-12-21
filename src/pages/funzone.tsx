@@ -1,7 +1,9 @@
-interface funzoneProps {
+import React from 'react'
 
-}
-
-export const funzone: React.FC<funzoneProps> = ({}) => {
-    return ();
+export default function FunZone() {
+  return (
+    <div>
+      
+    </div>
+  )
 }
