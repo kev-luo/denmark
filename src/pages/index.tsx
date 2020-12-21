@@ -12,7 +12,6 @@ import Link from "next/link";
 import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
 import { Main } from '../components/Main'
-import { CTA } from '../components/CTA'
 import { Footer } from '../components/Footer'
 
 const Index = () => (
@@ -64,7 +63,6 @@ const Index = () => (
     <Footer>
       <Text>❤️</Text>
     </Footer>
-    <CTA />
   </Container>
 )
 

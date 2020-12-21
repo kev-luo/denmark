@@ -5,7 +5,7 @@ import Header from "./Header"
 export const Container = (props: FlexProps) => {
   const { colorMode } = useColorMode()
 
-  const bgColor = { light: 'gray.50', dark: 'gray.900' }
+  const bgColor = { light: 'gray.50', dark: 'gray.800' }
 
   const color = { light: 'black', dark: 'white' }
   return (

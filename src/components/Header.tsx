@@ -6,6 +6,10 @@ export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = colorMode === 'dark'
 
+  const bgColor = { light: 'gray.200', dark: 'gray.900' }
+
+  const color = { light: 'black', dark: 'white' }
+
   return (
     <Flex
       position="fixed"
@@ -16,6 +20,9 @@ export default function Header() {
       width="100vw"
       px={8}
       py={3}
+      zIndex={1}
+      bgColor={bgColor[colorMode]}
+      color={color[colorMode]}
     >
       <Link href="/">
         <ChakraLink>
