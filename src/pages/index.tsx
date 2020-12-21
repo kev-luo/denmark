@@ -7,6 +7,7 @@ import {
   ListItem,
 } from '@chakra-ui/react'
 import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+import Link from "next/link";
 
 import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
@@ -20,27 +21,43 @@ const Index = () => (
     <Hero />
     <Main>
       <Text>
-        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-        <Code>typescript</Code>.
+        Where to go for <Code>Food</Code> + <Code>Fun</Code> +{' '}
+        <Code>Intrigue</Code>.
       </Text>
 
       <List spacing={3} my={0}>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink
-            isExternal
-            href="https://chakra-ui.com"
-            flexGrow={1}
-            mr={2}
-          >
-            Chakra UI <LinkIcon />
-          </ChakraLink>
+          <Link href="/recipes">
+            <ChakraLink
+              flexGrow={1}
+              mr={2}
+            >
+              Recipes <LinkIcon />
+            </ChakraLink>
+          </Link>
         </ListItem>
         <ListItem>
           <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-            Next.js <LinkIcon />
-          </ChakraLink>
+          <Link href="/funzone">
+            <ChakraLink
+              flexGrow={1}
+              mr={2}
+            >
+              Fun Zone <LinkIcon />
+            </ChakraLink>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <ListIcon as={CheckCircleIcon} color="green.500" />
+          <Link href="/funzone">
+            <ChakraLink
+              flexGrow={1}
+              mr={2}
+            >
+              Intrigue <LinkIcon />
+            </ChakraLink>
+          </Link>
         </ListItem>
       </List>
     </Main>
