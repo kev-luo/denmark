@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box } from "@chakra-ui/react"
 
-import SnakeDot from "./SnakeDot";
+import Snake from "./Snake";
 
 export default function GameCanvas() {
+  const [snakeDots, setSnakeDots] = useState([
+    [0,0],
+    [2.5,0]
+  ])
   return (
-    <Box border="1px solid black" position="relative" w="600px" h="600px" my={50} mx="auto">
-      <SnakeDot />
+    <Box border="1px solid black" position="relative" w={600} h={600} my={50} mx="auto">
+      <Snake snakeDots={snakeDots}/>
     </Box>
   )
 }
