@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { Heading, ListItem, Text } from "@chakra-ui/react";
+import { Heading, ListItem, Text, IconButton, Link as ChakraLink } from "@chakra-ui/react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { GamePad } from "./svg/GamePad";
 
 const MotionListItem = motion.custom(ListItem);
 const MotionHeading = motion.custom(Heading);
-const MotionText = motion.custom(Text);
 
-export default function FunZoneAccordion({ name, description }) {
+export default function FunZoneAccordion({ game }) {
   const [open, setOpen] = useState(false);
   return (
-    <MotionListItem
-      layout
-      onClick={() => setOpen(!open)}
-      backgroundColor="darkseagreen"
-    >
-      <MotionHeading layout>{name}</MotionHeading>
+    <MotionListItem layout backgroundColor="darkseagreen">
+      <MotionHeading layout onClick={() => setOpen(!open)} _hover={{textDecoration: "underline", cursor: "pointer"}}>
+        {game.name}
+      </MotionHeading>
       <AnimatePresence>
         {open && (
           <motion.section
@@ -23,7 +22,12 @@ export default function FunZoneAccordion({ name, description }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <Text>{description}</Text>
+            <Text>{game.description}</Text>
+            <Link href={`${game.page}`} passHref>
+              <ChakraLink>
+                <IconButton as={GamePad} />
+              </ChakraLink>
+            </Link>
           </motion.section>
         )}
       </AnimatePresence>

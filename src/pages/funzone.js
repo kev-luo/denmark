@@ -9,14 +9,13 @@ const MotionList = motion.custom(List);
 
 export default function FunZone() {
   return (
-    <Container>
+    <Container title="Fun Zone">
       <Heading>Welcome to the Fun Zone</Heading>
       <AnimateSharedLayout>
         <MotionList layout initial={{ borderRadius: 25 }} spacing={2}>
           {games.map((game) => (
             <FunZoneAccordion
-              name={game.name}
-              description={game.description}
+              game={game}
               key={game.id}
             />
           ))}

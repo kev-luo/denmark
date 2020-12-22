@@ -37,6 +37,12 @@ export default function Header() {
         <Link href="/funzone">
           <ChakraLink>Fun Zone</ChakraLink>
         </Link>
+        <Link href="/mystery">
+          <ChakraLink>Mystery</ChakraLink>
+        </Link>
+        <Link href="/tacococo">
+          <ChakraLink>Tacococo</ChakraLink>
+        </Link>
         <Switch
           color="green"
           isChecked={isDark}

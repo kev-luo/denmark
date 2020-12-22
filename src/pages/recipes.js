@@ -1,9 +1,7 @@
 import { List, Heading } from "@chakra-ui/react";
 import React from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
 
-import { getRecipes } from "../../lib/recipes";
+import { recipes } from "../../data/recipes";
 import { Container } from "../components/Container";
 import RecipeItem from "../components/RecipeItem";
 import { usePositionReorder } from "../utils/usePositionReorder";
@@ -15,14 +13,10 @@ const colors = [
   "linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%)",
 ];
 
-export default function Recipes({ allRecipes }) {
-  const router = useRouter();
-  const [order, updatePosition, updateOrder] = usePositionReorder(allRecipes);
+export default function Recipes() {
+  const [order, updatePosition, updateOrder] = usePositionReorder(recipes);
   return (
-    <Container>
-      <Head>
-        <title>{router.pathname.split("/")[1]}</title>
-      </Head>
+    <Container title="Recipes">
       <Heading>Getcho' Grub On</Heading>
       <List spacing={3}>
         {order.map((recipe, index) => {
@@ -42,12 +36,3 @@ export default function Recipes({ allRecipes }) {
     </Container>
   );
 }
-
-export const getStaticProps = async () => {
-  const allRecipes = getRecipes();
-  return {
-    props: {
-      allRecipes,
-    },
-  };
-};
