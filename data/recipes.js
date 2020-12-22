@@ -1,10 +1,4 @@
-export type Recipe = {
-  id: number;
-  title: string;
-  category: string;
-}
-
-export const recipes: Recipe[] = [
+export const recipes = [
   {
     id: 1,
     title: "balsamic rosemary chicken with carrots and asparagus",

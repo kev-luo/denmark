@@ -5,22 +5,23 @@ import {
   List,
   ListIcon,
   ListItem,
+  Flex,
 } from '@chakra-ui/react'
 import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
 import Link from "next/link";
 
 import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
-import { Main } from '../components/Main'
 import { Footer } from '../components/Footer'
+import React from 'react';
 
 const Index = () => (
-  <Container height="100vh">
+  <Container>
+
     <Hero />
-    <Main>
+    <Flex direction="column">
       <Text>
-        Where to go for <Code>Food</Code> + <Code>Fun</Code> +{' '}
-        <Code>Intrigue</Code>.
+        <Code>Food</Code> + <Code>Fun</Code> + <Code>Intrigue</Code>
       </Text>
 
       <List spacing={3} my={0}>
@@ -58,7 +59,7 @@ const Index = () => (
           </Link>
         </ListItem>
       </List>
-    </Main>
+    </Flex>
 
     <Footer>
       <Text>❤️</Text>

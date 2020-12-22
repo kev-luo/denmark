@@ -17,11 +17,6 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
-  "devDependencies": {
-    "@types/node": "^14.6.0",
-    "@types/react": "^16.9.46",
-    "@types/react-dom": "^16.9.8",
-    "typescript": "4.0.5"
-  },
+  "devDependencies": {},
   "license": "MIT"
 }
