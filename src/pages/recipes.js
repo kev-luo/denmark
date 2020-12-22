@@ -1,4 +1,4 @@
-import { List, ListItem } from "@chakra-ui/react";
+import { List, Heading } from "@chakra-ui/react";
 import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -23,6 +23,7 @@ export default function Recipes({ allRecipes }) {
       <Head>
         <title>{router.pathname.split("/")[1]}</title>
       </Head>
+      <Heading>Getcho' Grub On</Heading>
       <List spacing={3}>
         {order.map((recipe, index) => {
           const color = colors[Math.floor(Math.random() * colors.length)];
