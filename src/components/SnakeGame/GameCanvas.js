@@ -5,8 +5,8 @@ import Snake from "./Snake";
 import Food from "./Food";
 
 const getFoodPos = () => {
-  const x = Math.floor((Math.random() * 98 + 1)/2)*2;
-  const y = Math.floor((Math.random() * 98 + 1)/2)*2;
+  const x = Math.floor((Math.random() * 98 + 1) / 2) * 2;
+  const y = Math.floor((Math.random() * 98 + 1) / 2) * 2;
   return [x, y];
 };
 
@@ -83,48 +83,76 @@ export default function GameCanvas() {
 
   const resetGame = () => {
     clearInterval(gameStart);
-    setGameDeets(gameDeets => {
+    setGameDeets((gameDeets) => {
       return {
         ...gameDeets,
-        ...initialState
-      }
-    })
-  }
+        ...initialState,
+      };
+    });
+  };
 
   const checkBorderCollision = () => {
     const { snakeDots } = gameDeets;
     const head = snakeDots[snakeDots.length - 1];
     if (head[0] >= 100 || head[1] >= 100 || head[0] <= 0 || head[1] <= 0) {
-      resetGame()
+      resetGame();
     }
   };
 
   const checkAteSelf = () => {
-    const snake = [...gameDeets.snakeDots ];
-    const head = snake[snake.length-1];
+    const snake = [...gameDeets.snakeDots];
+    const head = snake[snake.length - 1];
     snake.pop();
-    snake.forEach(dot => {
-      if(head[0] === dot[0] && head[1] === dot[1]) {
+    snake.forEach((dot) => {
+      if (head[0] === dot[0] && head[1] === dot[1]) {
         resetGame();
       }
+    });
+  };
+
+  const eatFood = () => {
+    const head = gameDeets.snakeDots[gameDeets.snakeDots.length - 1];
+    const food = gameDeets.food;
+    if (head[0] == food[0] && head[1] == food[1]) {
+      setGameDeets(gameDeets => {
+        return {
+          ...gameDeets,
+          food: getFoodPos()
+        }
+      })
+      addToSnake();
+    }
+  };
+
+  const addToSnake = () => {
+    const newSnake = [...gameDeets.snakeDots]
+    newSnake.unshift([])
+    setGameDeets(gameDeets => {
+      return {
+        ...gameDeets,
+        snakeDots: newSnake,
+        snakeSpeed: gameDeets.snakeSpeed - 20
+      }
     })
-  }
+  };
 
   useEffect(() => {
     document.addEventListener("keydown", keyDown);
     return () => document.removeEventListener("keydown", keyDown);
   }, [keyDown]);
-  
+
   let gameStart;
   useEffect(() => {
     gameStart = setInterval(moveSnake, gameDeets.snakeSpeed);
     return () => clearInterval(gameStart);
   });
-  
+
   useEffect(() => {
     checkBorderCollision();
     checkAteSelf();
+    eatFood();
   }, [gameDeets.snakeDots]);
+
   return (
     <Box
       border="1px solid black"
