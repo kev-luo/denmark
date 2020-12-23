@@ -7,13 +7,13 @@ export default function Snake({ snakeDots }) {
       {snakeDots.map((pos) => {
         return (
           <Box
-            position="absolute"
+            pos="absolute"
             w="2%"
             h="2%"
             left={`${pos[0]}%`}
             top={`${pos[1]}%`}
-            backgroundColor="black"
-            border="1px solid black"
+            bg="black"
+            zIndex={2}
           />
         );
       })}
