@@ -5,8 +5,8 @@ import Snake from "./Snake";
 import Food from "./Food";
 
 const getFoodPos = () => {
-  const x = Math.floor(Math.random() * 99);
-  const y = Math.floor(Math.random() * 99);
+  const x = Math.floor((Math.random() * 98 + 1)/2)*2;
+  const y = Math.floor((Math.random() * 98 + 1)/2)*2;
   return [x, y];
 };
 
@@ -83,7 +83,7 @@ export default function GameCanvas() {
   const checkBorderCollision = () => {
     const { snakeDots } = gameDeets;
     const head = snakeDots[snakeDots.length - 1];
-    if (head[0] > 100 || head[0] < 0 || head[1] > 100 || head[1] < 0) {
+    if (head[0] >= 100 || head[1] >= 100 || head[0] <= 0 || head[1] <= 0) {
       clearInterval(gameStart);
       setGameDeets(gameDeets => {
         return {
