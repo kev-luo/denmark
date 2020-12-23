@@ -14,10 +14,11 @@ export default function GameCanvas() {
   const [gameDeets, setGameDeets] = useState({
     snakeDots: [
       [0, 0],
-      [2.5, 0],
+      [2, 0],
     ],
     food: getFoodPos(),
     direction: "right", // initial snake direction is right
+    snakeSpeed: 200
   });
 
   const keyDown = (e) => {
@@ -50,10 +51,43 @@ export default function GameCanvas() {
         break;
     }
   };
+
+  const moveSnake = () => {
+    const snakeDots = [...gameDeets.snakeDots];
+    let head = snakeDots[snakeDots.length - 1];
+    switch (gameDeets.direction) {
+      case "up":
+        head = [head[0], head[1] - 2];
+        break;
+      case "down":
+        head = [head[0], head[1] + 2];
+        break;
+      case "left":
+        head = [head[0] - 2, head[1]];
+        break;
+      case "right":
+        head = [head[0] + 2, head[1]];
+        break;
+    }
+    snakeDots.push(head);
+    snakeDots.shift();
+    setGameDeets((gameDeets) => {
+      return {
+        ...gameDeets,
+        snakeDots,
+      };
+    });
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", keyDown);
     return () => document.removeEventListener("keydown", keyDown);
   }, [keyDown]);
+
+  // useEffect(() => {
+  //   const startSnake = setInterval(moveSnake, gameDeets.snakeSpeed);
+  //   return () => clearInterval(startSnake);
+  // })
   return (
     <Box
       border="1px solid black"

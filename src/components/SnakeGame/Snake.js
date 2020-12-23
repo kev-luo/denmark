@@ -4,9 +4,10 @@ import { Box } from "@chakra-ui/react";
 export default function Snake({ snakeDots }) {
   return (
     <>
-      {snakeDots.map((pos) => {
+      {snakeDots.map((pos, i) => {
         return (
           <Box
+            key={i}
             pos="absolute"
             w="2%"
             h="2%"
