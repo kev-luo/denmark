@@ -11,15 +11,16 @@ const getFoodPos = () => {
 };
 
 export default function GameCanvas() {
-  const [gameDeets, setGameDeets] = useState({
+  const initialState = {
     snakeDots: [
-      [0, 0],
-      [2, 0],
+      [50, 50],
+      [52, 50],
     ],
     food: getFoodPos(),
     direction: "right", // initial snake direction is right
-    snakeSpeed: 200
-  });
+    snakeSpeed: 200,
+  };
+  const [gameDeets, setGameDeets] = useState(initialState);
 
   const keyDown = (e) => {
     const { key } = e;
@@ -79,15 +80,34 @@ export default function GameCanvas() {
     });
   };
 
+  const checkBorderCollision = () => {
+    const { snakeDots } = gameDeets;
+    const head = snakeDots[snakeDots.length - 1];
+    if (head[0] > 100 || head[0] < 0 || head[1] > 100 || head[1] < 0) {
+      clearInterval(gameStart);
+      setGameDeets(gameDeets => {
+        return {
+          ...gameDeets,
+          ...initialState
+        }
+      })
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", keyDown);
     return () => document.removeEventListener("keydown", keyDown);
   }, [keyDown]);
 
-  // useEffect(() => {
-  //   const startSnake = setInterval(moveSnake, gameDeets.snakeSpeed);
-  //   return () => clearInterval(startSnake);
-  // })
+  let gameStart;
+  useEffect(() => {
+    gameStart = setInterval(moveSnake, gameDeets.snakeSpeed);
+    return () => clearInterval(gameStart);
+  });
+
+  useEffect(() => {
+    checkBorderCollision();
+  }, [gameDeets.snakeDots]);
   return (
     <Box
       border="1px solid black"
