@@ -58,18 +58,19 @@ export default function GameCanvas() {
     let head = snakeDots[snakeDots.length - 1];
     switch (gameDeets.direction) {
       case "up":
-        head = [head[0], head[1] - 2];
+        head = [head[0], head[1] - 2]; // move the head up one step
         break;
       case "down":
-        head = [head[0], head[1] + 2];
+        head = [head[0], head[1] + 2]; // move the head down one step
         break;
       case "left":
-        head = [head[0] - 2, head[1]];
+        head = [head[0] - 2, head[1]]; // move the head left one step
         break;
       case "right":
-        head = [head[0] + 2, head[1]];
+        head = [head[0] + 2, head[1]]; // move the head right one step
         break;
     }
+    // add new head to snake and remove the tail
     snakeDots.push(head);
     snakeDots.shift();
     setGameDeets((gameDeets) => {
@@ -80,33 +81,49 @@ export default function GameCanvas() {
     });
   };
 
+  const resetGame = () => {
+    clearInterval(gameStart);
+    setGameDeets(gameDeets => {
+      return {
+        ...gameDeets,
+        ...initialState
+      }
+    })
+  }
+
   const checkBorderCollision = () => {
     const { snakeDots } = gameDeets;
     const head = snakeDots[snakeDots.length - 1];
     if (head[0] >= 100 || head[1] >= 100 || head[0] <= 0 || head[1] <= 0) {
-      clearInterval(gameStart);
-      setGameDeets(gameDeets => {
-        return {
-          ...gameDeets,
-          ...initialState
-        }
-      })
+      resetGame()
     }
   };
+
+  const checkAteSelf = () => {
+    const snake = [...gameDeets.snakeDots ];
+    const head = snake[snake.length-1];
+    snake.pop();
+    snake.forEach(dot => {
+      if(head[0] === dot[0] && head[1] === dot[1]) {
+        resetGame();
+      }
+    })
+  }
 
   useEffect(() => {
     document.addEventListener("keydown", keyDown);
     return () => document.removeEventListener("keydown", keyDown);
   }, [keyDown]);
-
+  
   let gameStart;
   useEffect(() => {
     gameStart = setInterval(moveSnake, gameDeets.snakeSpeed);
     return () => clearInterval(gameStart);
   });
-
+  
   useEffect(() => {
     checkBorderCollision();
+    checkAteSelf();
   }, [gameDeets.snakeDots]);
   return (
     <Box
