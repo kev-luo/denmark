@@ -17,23 +17,16 @@ export default function RecipeItem({ recipe, i, updatePosition, updateOrder, col
       py={2}
       px={1}
       layout
-      initial={false}
+      initial="false"
       animate={isDragging ? onTop : flat}
       style={{ background: `${color}` }}
       whileHover={{ scale: 1.03, boxShadow: "0px 3px 3px rgba(0,0,0,0.15)" }}
       whileTap={{ scale: 1.12, boxShadow: "0px 5px 5px rgba(0,0,0,0.1)" }}
       drag="y"
-      dragOriginY={dragOriginY}
       dragConstraints={{ top: 0, bottom: 0}}
       dragElastic={1}
       onDragStart={() => setDragging(true)}
       onDragEnd={() => setDragging(false)}
-      positionTransition={({ delta }) => {
-        if(isDragging) {
-          dragOriginY.set(dragOriginY.get() + delta.y);
-        }
-        return !isDragging
-      }}
       onViewportBoxUpdate={(_viewportBox, delta) => {
         isDragging && updateOrder(i, delta.y.translate);
       }}

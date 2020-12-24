@@ -18,7 +18,7 @@ export default function GameCanvas() {
     ],
     food: getFoodPos(),
     direction: "right", // initial snake direction is right
-    snakeSpeed: 200,
+    snakeSpeed: 150,
   };
   const [gameDeets, setGameDeets] = useState(initialState);
 
@@ -128,10 +128,12 @@ export default function GameCanvas() {
     const newSnake = [...gameDeets.snakeDots]
     newSnake.unshift([])
     setGameDeets(gameDeets => {
+      const { snakeSpeed } = gameDeets;
+      const speedStep = snakeSpeed < 90 ? 1 : snakeSpeed <= 100 ? 5 : 10
       return {
         ...gameDeets,
         snakeDots: newSnake,
-        snakeSpeed: gameDeets.snakeSpeed - 20
+        snakeSpeed: gameDeets.snakeSpeed - speedStep
       }
     })
   };

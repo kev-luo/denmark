@@ -17,9 +17,9 @@ export default function Header() {
       left="0rem"
       justify="space-between"
       align="center"
-      width="100vw"
+      w="100vw"
       px={8}
-      py={3}
+      h="6vh"
       zIndex={1}
       bgColor={bgColor[colorMode]}
       color={color[colorMode]}
