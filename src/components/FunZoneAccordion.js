@@ -10,7 +10,7 @@ const MotionHeading = motion.custom(Heading);
 export default function FunZoneAccordion({ game }) {
   const [open, setOpen] = useState(false);
   return (
-    <MotionListItem layout backgroundColor="darkseagreen">
+    <MotionListItem layout >
       <MotionHeading layout onClick={() => setOpen(!open)} _hover={{textDecoration: "underline", cursor: "pointer"}}>
         {game.name}
       </MotionHeading>
