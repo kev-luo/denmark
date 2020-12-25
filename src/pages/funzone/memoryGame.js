@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Button, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import _ from "lodash";
 
 import { images } from "../../../data/memoryGame";
 import { Container } from "../../components/Container";
@@ -17,8 +18,7 @@ export default function memoryGame() {
   const handleClick = (imgName, imgId) => {
     const imgIndex = imgId - 1;
     if (clicked[imgIndex]["clicked"]) {
-      setScore(() => 0);
-      setClicked(initialState);
+      restart();
     } else {
       setClicked((clicked) => {
         return clicked.map((image) => {
@@ -36,6 +36,11 @@ export default function memoryGame() {
     }
   };
 
+  const restart = () => {
+    setScore(() => 0);
+    setClicked(initialState);
+  }
+
   return (
     <Container title="Memory Game">
       <Heading justifySelf="center" alignSelf="center">
@@ -51,11 +56,11 @@ export default function memoryGame() {
         my={10}
         layout
       >
-        {images.map((image) => (
+        {_.shuffle(clicked).map((image) => (
           <Item key={image.id} image={image} handleClick={handleClick} />
         ))}
       </MotionGrid>
-      <Button>Restart</Button>
+      <Button onClick={restart}>Restart</Button>
     </Container>
   );
 }
