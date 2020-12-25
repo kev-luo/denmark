@@ -1,9 +1,11 @@
 import React from 'react'
 
+import { Container } from "../../components/Container";
+
 export default function memoryGame() {
   return (
-    <div>
+    <Container>
       Memory Game
-    </div>
+    </Container>
   )
 }

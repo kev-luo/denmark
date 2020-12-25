@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 
 import Snake from "./Snake";
 import Food from "./Food";
@@ -11,6 +11,8 @@ const getFoodPos = () => {
 };
 
 export default function GameCanvas() {
+  const { colorMode } = useColorMode();
+  const borderColor = { light: "black", dark: "white" }
   const initialState = {
     snakeDots: [
       [50, 50],
@@ -139,8 +141,8 @@ export default function GameCanvas() {
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", keyDown);
-    return () => document.removeEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyDown);
+    return () => document.removeEventListener("keyup", keyDown);
   }, [keyDown]);
 
   let gameStart;
@@ -157,14 +159,14 @@ export default function GameCanvas() {
 
   return (
     <Box
-      border="1px solid black"
+      border={`1px solid ${borderColor[colorMode]}`}
       pos="relative"
       w={600}
       h={600}
       my={50}
       mx="auto"
     >
-      <Snake snakeDots={gameDeets.snakeDots} />
+      <Snake snakeDots={gameDeets.snakeDots} color={borderColor[colorMode]}/>
       <Food food={gameDeets.food} />
     </Box>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
-export default function Snake({ snakeDots }) {
+export default function Snake({ snakeDots, color }) {
   return (
     <>
       {snakeDots.map((pos, i) => {
@@ -13,7 +13,7 @@ export default function Snake({ snakeDots }) {
             h="2%"
             left={`${pos[0]}%`}
             top={`${pos[1]}%`}
-            bg="black"
+            bg={color}
             zIndex={2}
           />
         );
