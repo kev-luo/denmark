@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { GridItem, SimpleGrid, Button, Center } from "@chakra-ui/react";
+import { GridItem, SimpleGrid, Button, useColorMode } from "@chakra-ui/react";
 
 import { Container } from "../../components/Container";
-import { randomAdd, boardMove } from "../../utils/twentyFourtyEight/boardChange";
+import {
+  randomAdd,
+  boardMove,
+} from "../../utils/twentyFourtyEight/boardChange";
+import Tile from "../../components/TwentyFourtyEight/Tile";
 
 export default function TwentyFourtyEight() {
+
+  const { colorMode } = useColorMode();
+
+  const borderColor = { light: "black", dark: "white"}
   const initialBoard = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -17,7 +25,7 @@ export default function TwentyFourtyEight() {
   const restart = () => {
     setBoard(() => {
       return randomAdd(randomAdd([...initialBoard]));
-    })
+    });
   };
 
   let valid = true;
@@ -32,9 +40,9 @@ export default function TwentyFourtyEight() {
         direction === "ArrowLeft" ||
         direction === "ArrowRight"
       ) {
-        setBoard(prevBoard => {
+        setBoard((prevBoard) => {
           let isGameOver = true;
-          directionArray.forEach(dir => {
+          directionArray.forEach((dir) => {
             let nextStep = randomAdd(boardMove(prevBoard, dir));
             if (JSON.stringify(prevBoard) !== JSON.stringify(nextStep)) {
               isGameOver = false;
@@ -58,12 +66,12 @@ export default function TwentyFourtyEight() {
       }
       setTimeout(() => (valid = true), 100);
     }
-  }
+  };
 
   useEffect(() => {
-    document.addEventListener("keydown", onKeyDown)
+    document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  })
+  });
 
   return (
     <Container>
@@ -71,16 +79,17 @@ export default function TwentyFourtyEight() {
         <SimpleGrid
           columns={4}
           spacing={1}
-          border="1px solid green"
+          border={`1px solid ${borderColor[colorMode]}`}
           w={400}
           mt={10}
+          p={1}
         >
           {board.flat().map((item, index) => (
-            <Center key={index} border="1px solid black" h={90}>{item === 0 ? null : item}</Center>
+            <Tile key={index} item={item} borderColor={borderColor[colorMode]}/>
           ))}
         </SimpleGrid>
       </GridItem>
-      <GridItem>
+      <GridItem justifySelf="center">
         <Button onClick={restart}>Restart</Button>
       </GridItem>
     </Container>
