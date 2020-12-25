@@ -16,7 +16,7 @@ export default function FunZone() {
       </GridItem>
       <GridItem rowSpan={9} colSpan={1} justifySelf="center" alignSelf="center">
         <AnimateSharedLayout>
-          <MotionList layout initial={{ borderRadius: 25 }} spacing={2}>
+          <MotionList layout="true" initial={{ borderRadius: 25 }} spacing={2}>
             {games.map((game) => (
               <FunZoneAccordion game={game} key={game.id} />
             ))}

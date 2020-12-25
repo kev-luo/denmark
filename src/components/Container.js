@@ -1,9 +1,9 @@
-import { Grid, useColorMode } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 import Head from "next/head";
 
 import Header from "./Header";
 
-export const Container = ({ children, title, cols, rows }) => {
+export const Container = ({ children, title }) => {
   const { colorMode } = useColorMode();
 
   const bgColor = { light: "gray.50", dark: "gray.800" };
@@ -15,17 +15,15 @@ export const Container = ({ children, title, cols, rows }) => {
         <title>{title}</title>
       </Head>
       <Header />
-      <Grid
+      <Box
         bg={bgColor[colorMode]}
         color={color[colorMode]}
         w="100%"
         h="94vh"
         mt="6vh"
-        templateColumns={`${cols}`}
-        templateRows={`${rows}`}
       >
         {children}
-      </Grid>
+      </Box>
     </>
   );
 };

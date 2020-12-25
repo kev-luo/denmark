@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { ListItem } from "@chakra-ui/react";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { useMeasurePosition } from "../utils/useMeasurePosition";
 
 const onTop = { zIndex: 1 };
 const flat = { zIndex: 0, transition: { delay: 0.3 } };
 const MotionListItem = motion.custom(ListItem);
 
+const listItemVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+};
+
 export default function RecipeItem({ recipe, i, updatePosition, updateOrder, color }) {
   const [isDragging, setDragging] = useState(false);
-  const dragOriginY = useMotionValue(0);
   const ref = useMeasurePosition((pos) => updatePosition(i, pos));
   return (
     <MotionListItem
