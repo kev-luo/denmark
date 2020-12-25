@@ -1,10 +1,10 @@
 import React from "react";
-import { Heading, Box, Button, GridItem } from "@chakra-ui/react";
+import { Heading, Box, Button, Flex } from "@chakra-ui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { Container } from "../components/Container";
-const MotionGridItem = motion.custom(GridItem);
+const MotionBox = motion.custom(Box);
 
 export default function Mystery() {
   const imageVariants = {
@@ -21,16 +21,24 @@ export default function Mystery() {
     },
   };
   return (
-    <Container title="Mystery" cols="repeat(2, 1fr)" rows="repeat(5, 1fr)">
-      <GridItem colSpan={2} rowSpan={1} justifySelf="center">
+    <Container title="Mystery">
+      <Box textAlign="center" py={4}>
         <Heading>Mystery Section</Heading>
-      </GridItem>
-      <MotionGridItem colSpan={1} rowSpan={2} h="50%" justifySelf="center" variants={imageVariants} initial="hidden" animate="visible">
-        <Image src="/idek.png" height={500} width={400} />
-      </MotionGridItem>
-      <GridItem colSpan={1}>
-        <Button>Call The Spooky Dude</Button>
-      </GridItem>
+      </Box>
+      <Flex direction="column" alignItems="center">
+        <MotionBox
+          h="50%"
+          justifySelf="center"
+          variants={imageVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <Image src="/idek.png" height={500} width={400} />
+        </MotionBox>
+        <Box>
+          <Button>Call The Spooky Dude</Button>
+        </Box>
+      </Flex>
     </Container>
   );
 }
