@@ -39,7 +39,6 @@ export function boardMove(board, direction) {
     for (var j = 0; j < 4; ++j) {
       var merged = [false, false, false, false];
       for (var i = itStart, nextVac = itStart; ; i += itDir) {
-        console.log("nextVac: ", nextVac);
         if (boardCopy[i][j] !== 0) {
           var temp = boardCopy[i][j];
           boardCopy[i][j] = 0;
@@ -92,6 +91,6 @@ export function boardMove(board, direction) {
       }
     }
   }
-  console.log(boardCopy)
+  return boardCopy
   // console.log("zipped: ", _.zip(...board))
 }

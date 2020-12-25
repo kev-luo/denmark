@@ -20,8 +20,44 @@ export default function TwentyFourtyEight() {
     })
   };
 
+  let valid = true;
   const onKeyDown = (e) => {
-    boardMove(board, e.key)
+    if (valid) {
+      valid = false;
+      let direction = e.code;
+      let directionArray = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+      if (
+        direction === "ArrowUp" ||
+        direction === "ArrowDown" ||
+        direction === "ArrowLeft" ||
+        direction === "ArrowRight"
+      ) {
+        setBoard(prevBoard => {
+          let isGameOver = true;
+          directionArray.forEach(dir => {
+            let nextStep = randomAdd(boardMove(prevBoard, dir));
+            if (JSON.stringify(prevBoard) !== JSON.stringify(nextStep)) {
+              isGameOver = false;
+            }
+          });
+          if (isGameOver) {
+            window.alert("Game Over");
+            return [...prevBoard];
+          }
+
+          //window.alert(JSON.stringify(prevBoard));
+          let newBoard1 = boardMove(prevBoard, direction);
+          //window.alert(JSON.stringify(prevBoard));
+          if (JSON.stringify(prevBoard) === JSON.stringify(newBoard1)) {
+            //window.alert("no change");
+            return [...newBoard1];
+          }
+          let newBoard2 = randomAdd(newBoard1);
+          return [...newBoard2];
+        });
+      }
+      setTimeout(() => (valid = true), 100);
+    }
   }
 
   useEffect(() => {
