@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, List, Flex, Box } from "@chakra-ui/react";
+import { Heading, List, Flex, Box, Center } from "@chakra-ui/react";
 import Image from "next/image";
 import { Container } from "../components/Container";
 import FunZoneAccordion from "../components/FunZoneAccordion";
@@ -11,9 +11,9 @@ const MotionList = motion.custom(List);
 export default function FunZone() {
   return (
     <Container title="Fun Zone">
-      <Box textAlign="center" py={4}>
-        <Heading>Fun Zone: You Best Have Fun</Heading>
-      </Box>
+      <Center py={4}>
+        <Heading>Fun Zone - You Best Have Fun 😤</Heading>
+      </Center>
       <Flex justifyContent="space-around" w="40%" m="auto">
         <Box alignSelf="center" w="400px">
           <AnimateSharedLayout>
