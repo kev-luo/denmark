@@ -6,41 +6,19 @@ import { Container } from "../components/Container";
 
 export default function Tacococo() {
   return (
-    <Container title="Tacococo" cols="repeat(8, 1fr)" rows="repeat(5, 1fr)">
-      {/* belly image */}
-      <GridItem
-        colSpan={2}
-        rowSpan={5}
-        pos="relative"
-        h="50%"
-        w="55%"
-        alignSelf="center"
-        justifySelf="end"
-      >
-        <Image src="/tacococo.png" layout="fill" objectFit="contain" />
-      </GridItem>
+    <Container title="Tacococo">
       {/* title */}
-      <GridItem colSpan={4} rowSpan={1} justifySelf="center">
-        <Heading zIndex={1} mt={10}>
-          A Tribute to My Beloved Tacococo:
-        </Heading>
-      </GridItem>
-      {/* corona danny */}
-      <GridItem
-        colSpan={2}
-        rowSpan={5}
-        pos="relative"
-        h="70%"
-        w="45%"
-        alignSelf="center"
-        justifySelf="start"
-      >
-        <Image src="/senorDenmark.png" layout="fill" objectFit="contain" />
-      </GridItem>
-      {/* main image */}
-      <GridItem colSpan={4} rowSpan={4} justifySelf="center" w="100%">
-        <Box pos="relative">
-          <Box w="50%" h={400} pos="absolute" p={0} left="20%" top="20%">
+      <Box textAlign="center" py={4}>
+        <Heading>A Tribute to My Beloved Tacococo:</Heading>
+      </Box>
+      <Flex justifyContent="space-around">
+        {/* belly image */}
+        <Box pos="relative" h="500px" w="500px">
+          <Image src="/tacococo.png" layout="fill" objectFit="contain" />
+        </Box>
+        {/* main image */}
+        <Box pos="relative" h="500px" w="500px" >
+          <Box h="500px" w="500px" pos="absolute" p={0}>
             <Image
               src="/tacococo-description.png"
               alt="tacococo description background"
@@ -51,14 +29,13 @@ export default function Tacococo() {
           </Box>
           <Flex
             zIndex={5}
-            w="20%"
+            w="40%"
             direction="column"
             color="white"
             pl={6}
             pt={2}
             pos="absolute"
-            left="20%"
-            top="20%"
+            top="10%"
           >
             <Text zIndex={1}>
               "This site was inspired by the old 90's Taco Bells to contribute
@@ -71,7 +48,11 @@ export default function Tacococo() {
             </Text>
           </Flex>
         </Box>
-      </GridItem>
+        {/* corona danny */}
+        <Box pos="relative" h="500px" w="500px">
+          <Image src="/senorDenmark.png" layout="fill" objectFit="contain" />
+        </Box>
+      </Flex>
     </Container>
   );
 }
