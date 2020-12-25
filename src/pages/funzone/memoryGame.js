@@ -1,23 +1,34 @@
-import React from 'react'
-import Image from "next/image";
-import { GridItem, Grid, Box } from "@chakra-ui/react";
+import React from "react";
+import { Grid, Box, Flex, Button } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 import { images } from "../../../data/memoryGame";
 import { Container } from "../../components/Container";
+import Item from "../../components/MemoryGame/Item";
+
+const MotionGrid = motion.custom(Grid);
 
 export default function memoryGame() {
   return (
     <Container>
-      <Grid w="50%" h="50%" templateColumns="repeat(3, 1fr)" templateRows="repeat(4, 1fr)" gap={2} mx="auto" my={10}>
-        {images.map(image => (
-          <GridItem key={image.id} border="1px solid black">
-            <Image src={image.url} width={200} height={200} />
-          </GridItem>
+      <MotionGrid
+        w="50%"
+        h="50%"
+        templateColumns="repeat(3, 1fr)"
+        templateRows="repeat(4, 1fr)"
+        gap={4}
+        mx="auto"
+        my={10}
+        layout
+      >
+        {images.map((image) => (
+          <Item key={image.id} image={image}/>
         ))}
-      </Grid>
-      <Box justifySelf="center">
-        Score: 
-      </Box>
+      </MotionGrid>
+      <Flex direction="column" justifySelf="center">
+        <Box >Score:</Box>
+        <Button>Restart</Button>
+      </Flex>
     </Container>
-  )
+  );
 }
