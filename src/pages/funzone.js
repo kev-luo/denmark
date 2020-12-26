@@ -20,13 +20,11 @@ export default function FunZone() {
             <MotionList
               layout="true"
               initial={{ borderRadius: 25 }}
-              spacing={2}
+              spacing={4}
             >
-              <Flex direction="column">
-                {games.map((game) => (
-                  <FunZoneAccordion game={game} key={game.id} />
-                ))}
-              </Flex>
+              {games.map((game) => (
+                <FunZoneAccordion game={game} key={game.id} />
+              ))}
             </MotionList>
           </AnimateSharedLayout>
         </Box>
