@@ -22,10 +22,10 @@ export function randomAdd(board) {
 }
 
 export function boardMove(board, direction) {
-  var boardCopy = _.cloneDeep(board);
-  var itStart; //iteration start point
-  var itDir; //iteration direction
-  //var nextVac;
+  let boardCopy = _.cloneDeep(board);
+  let itStart; //iteration start point
+  let itDir; //iteration direction
+  let addToScore = [];
 
   if (direction === "ArrowUp" || direction === "ArrowDown") {
     //iterate by col
@@ -50,6 +50,7 @@ export function boardMove(board, direction) {
             //first block not merge, merge once for every col, merge iff equal
             merged[nextVac - itDir] = true;
             boardCopy[nextVac - itDir][j] *= 2;
+            addToScore.push(boardCopy[nextVac - itDir][j])
           } else {
             //console.log([nextVac, j]);
             boardCopy[nextVac][j] = temp;
@@ -82,6 +83,7 @@ export function boardMove(board, direction) {
             //first block not merge, merge once for every col, merge iff equal
             merged[nextVac - itDir] = true;
             boardCopy[i][nextVac - itDir] *= 2;
+            addToScore.push(boardCopy[i][nextVac - itDir])
           } else {
             boardCopy[i][nextVac] = temp;
             nextVac += itDir;
@@ -91,6 +93,6 @@ export function boardMove(board, direction) {
       }
     }
   }
-  return boardCopy
+  return { boardCopy, addToScore }
   // console.log("zipped: ", _.zip(...board))
 }

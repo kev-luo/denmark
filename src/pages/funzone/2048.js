@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { GridItem, SimpleGrid, Button, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  SimpleGrid,
+  Button,
+  useColorMode,
+  Heading,
+  Center,
+} from "@chakra-ui/react";
+import _ from "lodash";
 
 import { Container } from "../../components/Container";
 import {
@@ -9,10 +17,9 @@ import {
 import Tile from "../../components/TwentyFourtyEight/Tile";
 
 export default function TwentyFourtyEight() {
-
   const { colorMode } = useColorMode();
 
-  const borderColor = { light: "black", dark: "white"}
+  const borderColor = { light: "black", dark: "white" };
   const initialBoard = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -21,11 +28,13 @@ export default function TwentyFourtyEight() {
   ];
 
   const [board, setBoard] = useState(initialBoard);
+  const [score, setScore] = useState(0);
 
   const restart = () => {
     setBoard(() => {
       return randomAdd(randomAdd([...initialBoard]));
     });
+    setScore(() => 0)
   };
 
   let valid = true;
@@ -43,7 +52,9 @@ export default function TwentyFourtyEight() {
         setBoard((prevBoard) => {
           let isGameOver = true;
           directionArray.forEach((dir) => {
-            let nextStep = randomAdd(boardMove(prevBoard, dir));
+            let { boardCopy } = boardMove(prevBoard, dir);
+            let nextStep = randomAdd(boardCopy);
+            // let nextStep = randomAdd(boardMove(prevBoard, dir));
             if (JSON.stringify(prevBoard) !== JSON.stringify(nextStep)) {
               isGameOver = false;
             }
@@ -53,11 +64,15 @@ export default function TwentyFourtyEight() {
             return [...prevBoard];
           }
 
-          //window.alert(JSON.stringify(prevBoard));
-          let newBoard1 = boardMove(prevBoard, direction);
-          //window.alert(JSON.stringify(prevBoard));
+          let { boardCopy: newBoard1, addToScore } = boardMove(
+            prevBoard,
+            direction
+          );
+          if (addToScore.length > 0) {
+            setScore((prevScore) => (prevScore += _.sum(addToScore)));
+          }
+          // check if board changed when user clicks an arrow
           if (JSON.stringify(prevBoard) === JSON.stringify(newBoard1)) {
-            //window.alert("no change");
             return [...newBoard1];
           }
           let newBoard2 = randomAdd(newBoard1);
@@ -75,7 +90,15 @@ export default function TwentyFourtyEight() {
 
   return (
     <Container>
-      <GridItem justifySelf="center">
+      <Center>
+        <Heading my={4}>2048</Heading>
+      </Center>
+      <Center>
+        <Heading as="h5" size="md" >
+          {`Score: ${score}`}
+        </Heading>
+      </Center>
+      <Center>
         <SimpleGrid
           columns={4}
           spacing={1}
@@ -85,13 +108,19 @@ export default function TwentyFourtyEight() {
           p={1}
         >
           {board.flat().map((item, index) => (
-            <Tile key={index} item={item} borderColor={borderColor[colorMode]}/>
+            <Tile
+              key={index}
+              item={item}
+              borderColor={borderColor[colorMode]}
+            />
           ))}
         </SimpleGrid>
-      </GridItem>
-      <GridItem justifySelf="center">
-        <Button onClick={restart}>Restart</Button>
-      </GridItem>
+      </Center>
+      <Center>
+        <Button onClick={restart} my={4}>
+          Restart
+        </Button>
+      </Center>
     </Container>
   );
 }
