@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, useColorMode } from "@chakra-ui/react";
+import { Box, useColorMode, Button, Center, Heading } from "@chakra-ui/react";
 
 import Snake from "./Snake";
 import Food from "./Food";
@@ -12,7 +12,7 @@ const getFoodPos = () => {
 
 export default function GameCanvas() {
   const { colorMode } = useColorMode();
-  const borderColor = { light: "black", dark: "white" }
+  const borderColor = { light: "black", dark: "white" };
   const initialState = {
     snakeDots: [
       [50, 50],
@@ -21,6 +21,7 @@ export default function GameCanvas() {
     food: getFoodPos(),
     direction: "right", // initial snake direction is right
     snakeSpeed: 150,
+    score: 0,
   };
   const [gameDeets, setGameDeets] = useState(initialState);
 
@@ -116,29 +117,39 @@ export default function GameCanvas() {
     const head = gameDeets.snakeDots[gameDeets.snakeDots.length - 1];
     const food = gameDeets.food;
     if (head[0] == food[0] && head[1] == food[1]) {
-      setGameDeets(gameDeets => {
+      setGameDeets((gameDeets) => {
         return {
           ...gameDeets,
-          food: getFoodPos()
-        }
-      })
+          food: getFoodPos(),
+        };
+      });
       addToSnake();
+      incrementScore();
     }
   };
 
   const addToSnake = () => {
-    const newSnake = [...gameDeets.snakeDots]
-    newSnake.unshift([])
-    setGameDeets(gameDeets => {
+    const newSnake = [...gameDeets.snakeDots];
+    newSnake.unshift([]);
+    setGameDeets((gameDeets) => {
       const { snakeSpeed } = gameDeets;
-      const speedStep = snakeSpeed < 90 ? 1 : snakeSpeed <= 100 ? 5 : 10
+      const speedStep = snakeSpeed < 90 ? 1 : snakeSpeed <= 100 ? 5 : 10;
       return {
         ...gameDeets,
         snakeDots: newSnake,
-        snakeSpeed: gameDeets.snakeSpeed - speedStep
+        snakeSpeed: gameDeets.snakeSpeed - speedStep,
+      };
+    });
+  };
+
+  const incrementScore = () => {
+    setGameDeets(gameDeets => {
+      return {
+        ...gameDeets,
+        score: gameDeets.score + 1
       }
     })
-  };
+  }
 
   useEffect(() => {
     document.addEventListener("keyup", keyDown);
@@ -158,16 +169,22 @@ export default function GameCanvas() {
   }, [gameDeets.snakeDots]);
 
   return (
-    <Box
-      border={`1px solid ${borderColor[colorMode]}`}
-      pos="relative"
-      w={600}
-      h={600}
-      my={50}
-      mx="auto"
-    >
-      <Snake snakeDots={gameDeets.snakeDots} color={borderColor[colorMode]}/>
-      <Food food={gameDeets.food} />
-    </Box>
+    <>
+      <Center>
+        <Heading as="h5" size="md" mb={8}>
+          {`Score: ${gameDeets.score}`}
+        </Heading>
+      </Center>
+      <Box
+        border={`1px solid ${borderColor[colorMode]}`}
+        pos="relative"
+        w={600}
+        h={600}
+        mx="auto"
+      >
+        <Snake snakeDots={gameDeets.snakeDots} color={borderColor[colorMode]} />
+        <Food food={gameDeets.food} />
+      </Box>
+    </>
   );
 }
