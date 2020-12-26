@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Button, Heading } from "@chakra-ui/react";
+import { Grid, Button, Heading, Center } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import _ from "lodash";
 
@@ -28,7 +28,7 @@ export default function memoryGame() {
               clicked: true,
             };
           } else {
-            return image
+            return image;
           }
         });
       });
@@ -39,13 +39,18 @@ export default function memoryGame() {
   const restart = () => {
     setScore(() => 0);
     setClicked(initialState);
-  }
+  };
 
   return (
     <Container title="Memory Game">
-      <Heading justifySelf="center" alignSelf="center">
-        Score: {score}
-      </Heading>
+      <Center>
+        <Heading my={4}>Memory Game</Heading>
+      </Center>
+      <Center>
+        <Heading as="h5" size="md">
+          Score: {score}
+        </Heading>
+      </Center>
       <MotionGrid
         w="50%"
         h="50%"
@@ -60,7 +65,6 @@ export default function memoryGame() {
           <Item key={image.id} image={image} handleClick={handleClick} />
         ))}
       </MotionGrid>
-      <Button onClick={restart}>Restart</Button>
     </Container>
   );
 }
