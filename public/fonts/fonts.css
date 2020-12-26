@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "taco-bell";
+  src: url('tb_old.ttf');
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "permanent-marker";
+  src: url('perm_marker.ttf');
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}

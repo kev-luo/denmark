@@ -9,7 +9,7 @@ export default function Tacococo() {
     <Container title="Tacococo">
       {/* title */}
       <Box textAlign="center" py={4}>
-        <Heading>A Tribute to My Beloved Tacococo:</Heading>
+        <Heading fontFamily="permanent-marker">A Tribute to My Beloved Tacococo:</Heading>
       </Box>
       <Flex justifyContent="space-around">
         {/* belly image */}

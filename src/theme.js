@@ -11,6 +11,13 @@ const breakpoints = createBreakpoints({
 })
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      body: {
+        fontFamily: "taco-bell"
+      }
+    }
+  },
   colors: {
     black: '#16161D',
   },

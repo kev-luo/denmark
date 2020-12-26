@@ -5,7 +5,9 @@ export default class Document extends NextDocument {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link href="fonts/fonts.css" rel="stylesheet" />
+        </Head>
         <body>
           {/* Make Color mode to persists when you refresh the page. */}
           <ColorModeScript />
