@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Center } from "@chakra-ui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -22,9 +22,9 @@ export default function Mystery() {
   };
   return (
     <Container title="Mystery">
-      <Box textAlign="center" py={4}>
-        <Heading>Mystery Section</Heading>
-      </Box>
+      <Center py={4} fontSize={30}>
+        Mystery Section
+      </Center>
       <Flex direction="column" alignItems="center">
         <MotionBox
           h="50%"

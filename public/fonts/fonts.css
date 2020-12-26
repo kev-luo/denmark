@@ -13,3 +13,35 @@
   font-display: auto;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "roboto";
+  src: url('Roboto-Regular.ttf');
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "bungee-outline";
+  src: url('BungeeOutline-Regular.ttf');
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "exo-2";
+  src: url('Exo2-LightItalic.ttf');
+  font-weight: lighter;
+  font-display: auto;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "monoton";
+  src: url('Monoton-Regular.ttf');
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}

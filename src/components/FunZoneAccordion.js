@@ -29,6 +29,7 @@ export default function FunZoneAccordion({ game }) {
         onClick={() => setOpen(!open)}
         variants={headingVariants}
         whileHover="hover"
+        fontFamily="bungee-outline"
       >
         {game.name}
       </MotionHeading>

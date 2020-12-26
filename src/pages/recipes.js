@@ -1,10 +1,10 @@
-import { List, Heading, Grid, Box, GridItem } from "@chakra-ui/react";
-import React from "react";
+import { Grid, List, Center } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-
+import React from "react";
 import { recipes } from "../../data/recipes";
 import { Container } from "../components/Container";
 import RecipeItem from "../components/RecipeItem";
+
 
 const colors = [
   "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
@@ -31,9 +31,9 @@ const MotionGrid = motion.custom(Grid);
 export default function Recipes() {
   return (
     <Container title="Recipes">
-      <Box textAlign="center" py={4}>
-        <Heading>Getcho' Grub On</Heading>
-      </Box>
+      <Center fontSize={30} py={4}>
+        Getcho' Grub On
+      </Center>
       <List px="20%">
         <MotionGrid
           templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
