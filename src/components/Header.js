@@ -19,29 +19,29 @@ export default function Header() {
       align="center"
       w="100vw"
       px={8}
-      h="6vh"
+      h="7vh"
       zIndex={1}
       bgColor={bgColor[colorMode]}
       color={color[colorMode]}
     >
       <Link href="/">
-        <ChakraLink>
-          <Heading>The Den</Heading>
+        <ChakraLink letterSpacing={3} fontSize={35}>
+          The Den
         </ChakraLink>
       </Link>
 
       <HStack spacing="24px">
         <Link href="/recipes">
-          <ChakraLink>Recipes</ChakraLink>
+          <ChakraLink letterSpacing={2}>Recipes</ChakraLink>
         </Link>
         <Link href="/funzone">
-          <ChakraLink>Fun Zone</ChakraLink>
+          <ChakraLink letterSpacing={2}>Fun Zone</ChakraLink>
         </Link>
         <Link href="/mystery">
-          <ChakraLink>Mystery</ChakraLink>
+          <ChakraLink letterSpacing={2}>Mystery</ChakraLink>
         </Link>
         <Link href="/tacococo">
-          <ChakraLink>Tacococo</ChakraLink>
+          <ChakraLink letterSpacing={2}>Tacococo</ChakraLink>
         </Link>
         <Switch
           color="green"

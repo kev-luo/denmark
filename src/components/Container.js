@@ -19,8 +19,8 @@ export const Container = ({ children, title }) => {
         bg={bgColor[colorMode]}
         color={color[colorMode]}
         w="100%"
-        h="94vh"
-        mt="6vh"
+        h="93vh"
+        mt="7vh"
       >
         {children}
       </Box>

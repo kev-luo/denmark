@@ -11,8 +11,8 @@ const MotionList = motion.custom(List);
 export default function FunZone() {
   return (
     <Container title="Fun Zone">
-      <Center py={4}>
-        <Heading>Fun Zone - You Best Have Fun 😤</Heading>
+      <Center py={4} fontSize={24}>
+        Fun Zone - You Best Have Fun 😤
       </Center>
       <Flex justifyContent="space-around" w="40%" m="auto">
         <Box alignSelf="center" w="400px">

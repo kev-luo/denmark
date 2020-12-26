@@ -8,8 +8,8 @@ export default function Tacococo() {
   return (
     <Container title="Tacococo">
       {/* title */}
-      <Box textAlign="center" py={4}>
-        <Heading fontFamily="permanent-marker">A Tribute to My Beloved Tacococo:</Heading>
+      <Box textAlign="center" py={4} fontSize={30}>
+        A Tribute to My Beloved Tacococo:
       </Box>
       <Flex justifyContent="space-around">
         {/* belly image */}
@@ -36,14 +36,16 @@ export default function Tacococo() {
             pt={2}
             pos="absolute"
             top="10%"
+            fontFamily="permanent-marker" 
+            textShadow="1px 1px 5px rgba(0,0,0,0.9)"
           >
-            <Text zIndex={1}>
+            <Text zIndex={1} fontSize={15.5}>
               "This site was inspired by the old 90's Taco Bells to contribute
               how in the 90's I was birthed, as are you when Taco Bell is in the
               relationship, and hence with the 90's and Taco Bell together you
               are formed again and again."
             </Text>
-            <Text zIndex={1} mt={3}>
+            <Text zIndex={1} mt={3} >
               - Daniel Josef Denmark
             </Text>
           </Flex>
