@@ -1,10 +1,10 @@
-import { Grid, List, Center } from "@chakra-ui/react";
+import { Grid, List, Center, Box } from "@chakra-ui/react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
 import { recipes } from "../../data/recipes";
 import { Container } from "../components/Container";
 import RecipeItem from "../components/RecipeItem";
-
 
 const colors = [
   "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
@@ -34,20 +34,27 @@ export default function Recipes() {
       <Center fontSize={30} py={4}>
         Getcho' Grub On
       </Center>
-      <List px="20%">
-        <MotionGrid
-          templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-          gap={4}
-          variants={gridVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {recipes.map((recipe) => {
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            return <RecipeItem key={recipe.id} recipe={recipe} color={color} />;
-          })}
-        </MotionGrid>
-      </List>
+      <Box pos="relative">
+        <List pl="10%" pr="30%">
+          <MotionGrid
+            templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+            gap={4}
+            variants={gridVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {recipes.map((recipe) => {
+              const color = colors[Math.floor(Math.random() * colors.length)];
+              return (
+                <RecipeItem key={recipe.id} recipe={recipe} color={color} />
+              );
+            })}
+          </MotionGrid>
+        </List>
+        <Box pos="absolute" right="18rem" top="10%" h="80%" w="15%">
+          <Image src="/checkThisOut.png" layout="fill" objectPosition="contain" />
+        </Box>
+      </Box>
     </Container>
   );
 }

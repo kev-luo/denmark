@@ -11,7 +11,7 @@ const tileColors = {
   128: "#EDCF73",
   256: "#EDCC62",
   512: "#EDC850",
-  1028: "#EDC53F",
+  1024: "#EDC53F",
   2048: "#EDC22D",
 };
 
