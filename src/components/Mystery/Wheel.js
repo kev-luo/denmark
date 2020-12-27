@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { List, ListItem, Box, Center, Button } from "@chakra-ui/react";
+import { motion, useAnimation } from "framer-motion";
 
 const colors = [
   "#F0F8FF",
@@ -17,7 +18,17 @@ const colors = [
   "#BA55D3",
 ];
 
+const MotionList = motion.custom(List);
+
 export default function Wheel() {
+  const controls = useAnimation();
+  const handleClick = () => {
+    controls.start({
+      rotate: 720,
+      transition: { type: "inertia", velocity: Math.floor(Math.random() * 1000) + 900, timeConstant: 1000},
+    });
+    controls.rese;
+  };
   return (
     <Box mt={20}>
       <Box
@@ -29,7 +40,7 @@ export default function Wheel() {
       >
         <Image src="/attention.png" width={45} height={120} />
       </Box>
-      <List
+      <MotionList
         className="circle"
         w="25em"
         h="25em"
@@ -39,6 +50,7 @@ export default function Wheel() {
         m="1em auto"
         borderRadius="50%"
         overflow="hidden"
+        animate={controls}
       >
         {colors.map((color, index) => {
           return (
@@ -54,8 +66,6 @@ export default function Wheel() {
               transform={`rotate(${index * 30}deg) skewY(-60deg)`}
             >
               <Box
-                spellCheck="false"
-                contentEditable="true"
                 pos="absolute"
                 left="-100%"
                 w="200%"
@@ -73,9 +83,11 @@ export default function Wheel() {
             </ListItem>
           );
         })}
-      </List>
+      </MotionList>
       <Center>
-        <Button w={120}>Spin</Button>
+        <Button onClick={handleClick} w={120}>
+          Spin
+        </Button>
       </Center>
     </Box>
   );
