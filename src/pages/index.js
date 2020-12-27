@@ -8,6 +8,7 @@ import {
   ListItem,
   Text,
   Box,
+  useColorMode,
   Link as ChakraLink,
 } from "@chakra-ui/react";
 import Link from "next/link";
@@ -61,6 +62,7 @@ const imgIds = [0, 1, 2, 3, 4, 5, 6];
 const initialLeft = -25.2;
 
 export default function Home() {
+  const { colorMode } = useColorMode();
   const [display, setDisplay] = useState(false);
   const initialState = {
     imgOne: false,
@@ -82,7 +84,7 @@ export default function Home() {
   return (
     <Container title="Home">
       <MotionContainer h="4rem" w="50%" mx="auto" pos="relative" top={20} variants={containerVariants} initial="hidden" animate="visible">
-        <Box h="20%" w="100%" bgColor="black" />
+        <Box h="20%" w="100%" bgColor={colorMode === "dark" ? "#fff" : "#000"} />
         {imgIds.map((id) => {
           return (
             <MotionImage

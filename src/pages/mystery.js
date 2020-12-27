@@ -3,6 +3,7 @@ import { Box, Button, Flex, Center } from "@chakra-ui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import Wheel from "../components/Mystery/Wheel";
 import { Container } from "../components/Container";
 const MotionBox = motion.custom(Box);
 
@@ -26,7 +27,7 @@ export default function Mystery() {
         Mystery Section
       </Center>
       <Flex direction="column" alignItems="center">
-        <MotionBox
+        {/* <MotionBox
           h="50%"
           justifySelf="center"
           variants={imageVariants}
@@ -34,7 +35,8 @@ export default function Mystery() {
           animate="visible"
         >
           <Image src="/idek.png" height={500} width={400} />
-        </MotionBox>
+        </MotionBox> */}
+        <Wheel />
         <Box>
           <Button>Call The Spooky Dude</Button>
         </Box>
