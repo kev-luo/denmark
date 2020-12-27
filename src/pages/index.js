@@ -14,6 +14,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import { sitePages } from "../../data/pages";
 import { Container } from "../components/Container";
 import { Footer } from "../components/Footer";
 
@@ -46,7 +47,7 @@ export default function Home() {
       };
     });
   };
-  
+
   return (
     <Container title="Home">
       <Center py={10}>
@@ -54,106 +55,35 @@ export default function Home() {
       </Center>
       <Center my={5}>
         <List spacing={8} my={0} fontSize="1.5rem">
-          <ListItem
-            position="relative"
-            onMouseEnter={(e) => handleHover("imgOne", e)}
-            onMouseLeave={(e) => handleHover("imgOne", e)}
-          >
-            {display.imgOne && (
-              <MotionBox
-                position="absolute"
-                transform="rotate(90deg)"
-                left="-6rem"
-                top="-3rem"
-                variants={boxVariants}
-                initial="hidden"
-                animate="visible"
+          {sitePages.map((page) => {
+            return (
+              <ListItem
+                position="relative"
+                onMouseEnter={(e) => handleHover(page.alias, e)}
+                onMouseLeave={(e) => handleHover(page.alias, e)}
               >
-                <Image src="/attention.png" width={45} height={120} />
-              </MotionBox>
-            )}
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <Link href="/recipes">
-              <ChakraLink flexGrow={1} mr={2}>
-                Recipes <LinkIcon />
-              </ChakraLink>
-            </Link>
-          </ListItem>
-          <ListItem
-            position="relative"
-            onMouseEnter={(e) => handleHover("imgTwo", e)}
-            onMouseLeave={(e) => handleHover("imgTwo", e)}
-          >
-            {display.imgTwo && (
-              <MotionBox
-                position="absolute"
-                transform="rotate(90deg)"
-                left="-6rem"
-                top="-3rem"
-                variants={boxVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                <Image src="/attention.png" width={45} height={120} />
-              </MotionBox>
-            )}
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <Link href="/funzone">
-              <ChakraLink flexGrow={1} mr={2}>
-                Fun Zone <LinkIcon />
-              </ChakraLink>
-            </Link>
-          </ListItem>
-          <ListItem
-            position="relative"
-            onMouseEnter={(e) => handleHover("imgThree", e)}
-            onMouseLeave={(e) => handleHover("imgThree", e)}
-          >
-            {display.imgThree && (
-              <MotionBox
-                position="absolute"
-                transform="rotate(90deg)"
-                left="-6rem"
-                top="-3rem"
-                variants={boxVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                <Image src="/attention.png" width={45} height={120} />
-              </MotionBox>
-            )}
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <Link href="/mystery">
-              <ChakraLink flexGrow={1} mr={2}>
-                Mystery <LinkIcon />
-              </ChakraLink>
-            </Link>
-          </ListItem>
-          <ListItem
-            position="relative"
-            onMouseEnter={(e) => handleHover("imgFour", e)}
-            onMouseLeave={(e) => handleHover("imgFour", e)}
-          >
-            {display.imgFour && (
-              <MotionBox
-                position="absolute"
-                transform="rotate(90deg)"
-                left="-6rem"
-                top="-3rem"
-                variants={boxVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                <Image src="/attention.png" width={45} height={120} />
-              </MotionBox>
-            )}
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <Link href="/tacococo">
-              <ChakraLink flexGrow={1} mr={2}>
-                Tacococo <LinkIcon />
-              </ChakraLink>
-            </Link>
-          </ListItem>
+                {display[page.alias] && (
+                  <MotionBox
+                    position="absolute"
+                    transform="rotate(90deg)"
+                    left="-6rem"
+                    top="-3rem"
+                    variants={boxVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <Image src="/attention.png" width={45} height={120} />
+                  </MotionBox>
+                )}
+                <ListIcon as={CheckCircleIcon} color="green.500" />
+                <Link href={`${page.path}`}>
+                  <ChakraLink flexGrow={1} mr={2}>
+                    {page.name} <LinkIcon />
+                  </ChakraLink>
+                </Link>
+              </ListItem>
+            );
+          })}
         </List>
       </Center>
 
