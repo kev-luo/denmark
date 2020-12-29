@@ -3,6 +3,8 @@ import Image from "next/image";
 import { List, ListItem, Box, Center, Button } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
 
+import PrizeModal from "./PrizeModal";
+
 const colors = [
   "#F0F8FF",
   "#00FFFF",
@@ -21,15 +23,30 @@ const colors = [
 const MotionList = motion.custom(List);
 
 export default function Wheel() {
+  const [open, setOpen] = useState(false);
   const controls = useAnimation();
   const handleClick = () => {
+    const randomNum = Math.floor(Math.random() * 1000) + 900;
     controls.start({
-      rotate: 720,
-      transition: { type: "inertia", velocity: Math.floor(Math.random() * 1000) + 900, timeConstant: 1000},
+      rotate: 360,
+      transition: {
+        type: "inertia",
+        velocity: randomNum,
+        timeConstant: 1000,
+      },
     });
-    controls.rese;
+  };
+  let motionValue;
+  const onUpdate = (latest) => {
+    motionValue = latest;
+  };
+
+  const handleEnd = () => {
+    setOpen(true);
   };
   return (
+    <>
+    <PrizeModal open={open}/>
     <Box mt={20}>
       <Box
         pos="absolute"
@@ -51,6 +68,8 @@ export default function Wheel() {
         borderRadius="50%"
         overflow="hidden"
         animate={controls}
+        onUpdate={onUpdate}
+        onAnimationComplete={handleEnd}
       >
         {colors.map((color, index) => {
           return (
@@ -90,5 +109,6 @@ export default function Wheel() {
         </Button>
       </Center>
     </Box>
+    </>
   );
 }
