@@ -1,32 +1,28 @@
-import React from "react";
 import {
+  Box,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
   ModalBody,
-  ModalFooter,
-  Button,
+  ModalContent,
+  ModalOverlay,
 } from "@chakra-ui/react";
+import React from "react";
+import ReactPlayer from "react-player";
 
 export default function PrizeModal({ open, setOpen }) {
   return (
-    <Modal isOpen={open} onClose={() => setOpen(false)}>
+    <Modal isOpen={open} onClose={() => setOpen(false)} isCentered>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
-        <ModalCloseButton />
+      <ModalContent bgColor="transparent" boxShadow="none">
         <ModalBody>
-          gdsasg
+          <Box width="50vw">
+            <ReactPlayer
+              url="/videos/what_are_ya_doin.mov"
+              playing
+              width="50%"
+              height="50%"
+            />
+          </Box>
         </ModalBody>
-
-        <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={() => setOpen(false)}>
-            Close
-          </Button>
-          <Button variant="ghost">Secondary Action</Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );

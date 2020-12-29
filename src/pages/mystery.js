@@ -24,7 +24,7 @@ export default function Mystery() {
   return (
     <Container title="Mystery">
       <Center py={4} fontSize={30}>
-        Mystery Section
+        Mystery Section {"\u2728"}
       </Center>
       <Flex direction="column" alignItems="center">
         {/* <MotionBox
