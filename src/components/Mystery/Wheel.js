@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { List, ListItem, Box, Center, Button } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
@@ -46,7 +46,7 @@ export default function Wheel() {
   };
   return (
     <>
-    <PrizeModal open={open}/>
+    <PrizeModal open={open} setOpen={setOpen}/>
     <Box mt={20}>
       <Box
         pos="absolute"

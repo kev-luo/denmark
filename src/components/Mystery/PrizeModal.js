@@ -10,19 +10,19 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-export default function PrizeModal() {
+export default function PrizeModal({ open, setOpen }) {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={open} onClose={() => setOpen(false)}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Modal Title</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Lorem count={2} />
+          gdsasg
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onClose}>
+          <Button colorScheme="blue" mr={3} onClick={() => setOpen(false)}>
             Close
           </Button>
           <Button variant="ghost">Secondary Action</Button>
