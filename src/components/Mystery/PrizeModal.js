@@ -7,8 +7,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import ReactPlayer from "react-player";
+import { videos } from "../../../data/videos";
 
-export default function PrizeModal({ open, setOpen }) {
+export default function PrizeModal({ open, setOpen, num }) {
   return (
     <Modal isOpen={open} onClose={() => setOpen(false)} isCentered>
       <ModalOverlay />
@@ -16,7 +17,7 @@ export default function PrizeModal({ open, setOpen }) {
         <ModalBody>
           <Box width="50vw">
             <ReactPlayer
-              url="/videos/what_are_ya_doin.mov"
+              url={videos[num]['url']}
               playing
               width="50%"
               height="50%"

@@ -46,7 +46,7 @@ export default function Wheel() {
   };
   return (
     <>
-    <PrizeModal open={open} setOpen={setOpen}/>
+    <PrizeModal open={open} setOpen={setOpen} num={Math.floor(Math.random() * 10)}/>
     <Box mt={20}>
       <Box
         pos="absolute"
